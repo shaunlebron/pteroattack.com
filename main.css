@@ -1,0 +1,60 @@
+html, body	{
+	background-image:url(img/pagebgr.jpg);
+}
+
+#wrapper	{
+	width:960px;
+	height:auto;
+	margin:0px auto;
+}
+
+#header	{
+	width:960px;
+	height:530px;
+	background-image:url(img/bgr_header.jpg);
+	background-repeat:no-repeat;
+}
+
+#header p {
+	text-align: center;
+}
+
+#header-image {
+	width: 400px;
+	margin:0px auto;
+	padding-top:100px;
+}
+
+#header-image img {
+	margin-left:10px;
+	max-width: 100%;
+}
+
+
+/*IPHONE FRAME FOR YOUTUBE VIDEO
+source: http://stackoverflow.com/a/12121309/142317 */
+
+.iphone-frame {
+ background-image: url(img/iphone31.png);
+ background-repeat: no-repeat;
+ background-size: 100%;
+ width:600px;
+ margin:30px 180px;
+ display: inline-block;
+ position: relative;
+}
+
+.iphone-frame:after {
+    padding-top: 55.86%; /* height/width */
+    display: block;
+    content: '';
+}
+
+.iphone-screen {
+    position: absolute;
+    top: 0; bottom: 0; right: 0; left: 0; /*fill parent*/
+padding-left: 14.41%;
+padding-right: 13.51%;
+padding-top: 2.96%;
+padding-bottom: 11.84%;
+}

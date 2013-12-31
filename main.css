@@ -9,7 +9,7 @@ html, body	{
   src: local('Oswald Regular'), local('Oswald-Regular'), url(http://themes.googleusercontent.com/static/fonts/oswald/v7/qs_6LdoYjCitupC9judWT-vvDin1pK8aKteLpeZ5c0A.woff) format('woff');
 }
 
-#wrapper	{
+#top-wrapper	{
 	width:960px;
 	height:auto;
 	margin:0px auto;
@@ -82,6 +82,12 @@ padding-bottom: 11.84%;
 	padding-left: 60px;
 }
 
+#thumbnails:after { 
+   content: "";
+   display: block; 
+   clear: both;
+}
+
 .thumbnail {
 	cursor: pointer;
 	border: 5px solid rgba(0,0,0,0);
@@ -130,4 +136,10 @@ padding-bottom: 11.84%;
 }
 #preview4 {
 	background-image: url(img/preview4.png);
+}
+
+#summary-wrapper {
+	width: 100%;
+	background-color: #FFF;
+	padding: 50px 0;
 }

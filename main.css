@@ -21,15 +21,16 @@ html, body	{
 }
 
 #header-wrapper	{
-	width:960px;
-	margin:0px auto;
+	width:100%;
 	margin-bottom: 40px;
+	background-image:url(img/bgr_header.jpg);
+	background-position: 50% 0;
+	background-repeat:no-repeat;
 }
 
 #header	{
-	width:960px;
-	background-image:url(img/bgr_header.jpg);
-	background-repeat:no-repeat;
+	width:640px;
+	margin:0px auto;
 	text-align: center;
 }
 
@@ -76,7 +77,7 @@ source: http://stackoverflow.com/a/12121309/142317 */
  background-repeat: no-repeat;
  background-size: 100%;
  width:600px;
- margin:0px 180px;
+ margin:0px auto;
  margin-top:0px;
  margin-bottom: 0;
  display: inline-block;
@@ -99,10 +100,9 @@ padding-bottom: 11.84%;
 }
 
 #thumbnails {
-	width: 100%;
+	width: 600px;
 	margin: 0 auto;
 	margin-top:-40px;
-	padding-left: 182px;
 }
 
 #thumbnails:after {

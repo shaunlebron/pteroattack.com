@@ -26,11 +26,10 @@
 			'You\'ll fly to a new area after every wave you survive.  Experience the serenity of a mountain landscape, the bitterness of a surreal arctic shelf, and the boiling quarters of a volcanic cave.',
 		][i-1];
 
-		var delay = 500;
 		var s = $('#summary');
 		s.css({'opacity': 0});
 		s.text(summary);
-		s.animate({'opacity': 1}, delay);
+		s.animate({'opacity': 1}, 500);
 	}
 	function clickIndex(i) {
 		selectIndex(i);
@@ -55,47 +54,34 @@
 		$('#iphone-screen').html(html);
 		$('#video').click(function(){this.paused?this.play():this.pause();});
 	}
-	function initVid() {
-		var id = '8UGHYdYx5dI';
-		var src = "http://www.youtube.com/embed/" + id + "?rel=0&amp;showinfo=0&amp;controls=0"
-		var html = '<iframe src="' + src + '" height="100%" width="100%" allowfullscreen="" frameborder="0"></iframe>';
-		$('#iphone-screen').html(html);
-	}
 	$(function(){
 		selectIndex(1);
-		//initVid();
 	});
 </script>
-<div class="full-width">
-	<div id="header-wrapper">
-		<div id="header">
-			<div id="logo">
-				<img src="img/ptero_logo.png"/>
-			</div>
-			<div id="caption">
-				A prehistoric arcade shooter!
-			</div>
-			<div id="appstore">
-				<img src="img/appstore.png"/>
-			</div>
-			<div id="iphone-frame"><div id="iphone-screen"><img width="100%" src="img/vid_preview.png" style="cursor: pointer" onclick="clickIndex(1)"/></div></div>
-			<div id="thumbnails">
-				<a onclick="clickIndex(1)"><div class="thumbnail" id="preview1"> </div></a>
-				<a onclick="clickIndex(2)"><div class="thumbnail" id="preview2"> </div></a>
-				<a onclick="clickIndex(3)"><div class="thumbnail" id="preview3"> </div></a>
-				<a onclick="clickIndex(4)"><div class="thumbnail" id="preview4"> </div></a>
-			</div>
-			<div id="summary">
-			</div>
+<div id="header-wrapper">
+	<div id="header">
+		<div id="logo">
+			<img src="img/ptero_logo.png"/>
+		</div>
+		<div id="caption">
+			A prehistoric arcade shooter!
+		</div>
+		<div id="appstore">
+			<img src="img/appstore.png"/>
+		</div>
+		<div id="iphone-frame"><div id="iphone-screen"><img width="100%" src="img/vid_preview.png" style="cursor: pointer" onclick="clickIndex(1)"/></div></div>
+		<div id="thumbnails">
+			<div onclick="clickIndex(1)" class="thumbnail" id="preview1"></div>
+			<div onclick="clickIndex(2)" class="thumbnail" id="preview2"></div>
+			<div onclick="clickIndex(3)" class="thumbnail" id="preview3"></div>
+			<div onclick="clickIndex(4)" class="thumbnail" id="preview4"></div>
+		</div>
+		<div id="summary">
 		</div>
 	</div>
 </div>
-<div class="full-width" style="background-color: #EEE">
-	<div id="summary-wrapper">
-		<p>
-		Ever wonder how games are <span style="color:#aa4b69;">made</span>?
-		</p>
-	</div>
+<div id="question-wrapper">
+	<p>Ever wonder how games are <em>made</em>?</p>
 </div>
 </body>
 

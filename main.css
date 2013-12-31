@@ -16,15 +16,11 @@ html, body	{
     font-style: normal;
 }
 
-.full-width {
-	width: 100%;
-}
-
 #header-wrapper	{
 	width:100%;
 	margin-bottom: 40px;
 	background-image:url(img/bgr_header.jpg);
-	background-position: 50% 0;
+	background-position: 50% -80px;
 	background-repeat:no-repeat;
 }
 
@@ -159,15 +155,24 @@ padding-bottom: 11.84%;
 	background-image: url(img/preview4txt.png), url(img/preview4.png);
 }
 
-#summary-wrapper {
-	width:960px;
+#question-wrapper {
+	width: 100%;
+	background: #EEE;
 	margin:0 auto;
 	padding: 100px 0;
 }
 
-#summary-wrapper p {
+#question-wrapper p {
+	width: 640px;
+	margin: 0 auto;
 	text-align: center;
 	font-family: "BebasNeue";
 	font-size: 50px;
 	color: #AAA;
+}
+
+#question-wrapper p em {
+	text-decoration: none;
+	font-style: normal;
+	color: #AA4B69;
 }

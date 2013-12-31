@@ -23,6 +23,13 @@
 
 		$('#preview'+i).addClass('thumbnail-active');
 		$('#preview'+i+'txt').addClass('thumbtext-active');
+		summary = [
+			'Blast your way through waves of pterodactyls. Collect the right colors to boost your health. Experience beautifully animated environments. Survive the Pterror!',
+			'Shoot pterodactyls by "throwing" bullets from the bottom orb.  In other words, touch the orb and swipe in the direction you want to shoot. Shoot as fast as you can!',
+			'Capture pterodactyls that match the colored eggs (top-left).  This will earn you extra health.  Trust me, you\'ll need it!  Hold the net button with one finger while shooting with the other. But be careful, don\'t capture the wrong colors...',
+			'You\'ll fly to a new area after every wave you survive.  Experience the serenity of a mountain landscape, the bitterness of a surreal arctic shelf, and the boiling quarters of a volcanic cave.',
+		][i-1];
+		$('#summary').html(summary);
 	}
 	function clickIndex(i) {
 		selectIndex(i);
@@ -40,7 +47,7 @@
 	}
 	$(function(){
 		selectIndex(1);
-	})();
+	});
 </script>
 <div class="full-width">
 	<div id="header-wrapper">
@@ -62,10 +69,6 @@
 				<a onclick="clickIndex(4)"><div class="thumbnail" id="preview4"><img class="thumbtext" id="preview4txt" src="img/preview4txt.png"/></div></a>
 			</div>
 			<div id="summary">
-				Blast your way through waves of pterodactyls.
-				Collect the right colors to boost your health.
-				Experience beautifully animated environments.
-				Survive the Pterror!
 			</div>
 		</div>
 	</div>

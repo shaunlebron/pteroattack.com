@@ -4,11 +4,44 @@
 <head>
 <meta charset="utf-8">
 <title>Pterodactyl Attack</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
 <link rel="stylesheet" href="reset.css" type="text/css" />
 <link rel="stylesheet" href="main.css" type="text/css" />
 </head>
 
 <body>
+<script>
+	function selectIndex(i) {
+		$('#preview1').removeClass('thumbnail-active');
+		$('#preview2').removeClass('thumbnail-active');
+		$('#preview3').removeClass('thumbnail-active');
+		$('#preview4').removeClass('thumbnail-active');
+		$('#preview1txt').removeClass('thumbtext-active');
+		$('#preview2txt').removeClass('thumbtext-active');
+		$('#preview3txt').removeClass('thumbtext-active');
+		$('#preview4txt').removeClass('thumbtext-active');
+
+		$('#preview'+i).addClass('thumbnail-active');
+		$('#preview'+i+'txt').addClass('thumbtext-active');
+	}
+	function clickIndex(i) {
+		selectIndex(i);
+		id = [
+			'8UGHYdYx5dI',
+            'nmEN1yw_4GU',
+            '4xm5lCJjsPM',
+            'L2CDpvPP-14',
+		][i-1];
+		loopVid(id);
+	}
+	function loopVid(id) {
+		var elm = document.getElementById('youtube-iframe');
+		elm.src = "http://www.youtube.com/embed/" + id + "?rel=0&amp;showinfo=0&amp;controls=0;autoplay=1&amp;loop=1&amp;playlist="+id;
+	}
+	$(function(){
+		selectIndex(1);
+	})();
+</script>
 <div id="wrapper">
 	<div id="header">
 		<div id="logo">
@@ -17,7 +50,13 @@
 		<div id="appstore">
 			<img src="img/appstore.png">
 		</div>
-		<div class="iphone-frame"><div class="iphone-screen"><iframe src="http://www.youtube.com/embed/8UGHYdYx5dI?rel=0&amp;showinfo=0&amp;controls=0" height="100%" width="100%" allowfullscreen="" frameborder="0"></iframe></div></div>
+		<div class="iphone-frame"><div class="iphone-screen"><iframe id="youtube-iframe" src="http://www.youtube.com/embed/8UGHYdYx5dI?modestbranding=1&amp;rel=0&amp;showinfo=0&amp;controls=0" height="100%" width="100%" allowfullscreen="" frameborder="0"></iframe></div></div>
+		<div id="thumbnails">
+			<a onclick="clickIndex(1)"><div class="thumbnail" id="preview1"><img class="thumbtext" id="preview1txt" src="img/preview1txt.png"></div><a/>
+			<a onclick="clickIndex(2)"><div class="thumbnail" id="preview2"><img class="thumbtext" id="preview2txt" src="img/preview2txt.png"></div><a/>
+			<a onclick="clickIndex(3)"><div class="thumbnail" id="preview3"><img class="thumbtext" id="preview3txt" src="img/preview3txt.png"></div><a/>
+			<a onclick="clickIndex(4)"><div class="thumbnail" id="preview4"><img class="thumbtext" id="preview4txt" src="img/preview4txt.png"></div><a/>
+		</div>
 	</div>
 </div>
 </body>

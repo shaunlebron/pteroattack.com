@@ -75,3 +75,59 @@ padding-right: 13.51%;
 padding-top: 2.96%;
 padding-bottom: 11.84%;
 }
+
+#thumbnails {
+	width: 100%;
+	margin: 0 auto;
+	padding-left: 60px;
+}
+
+.thumbnail {
+	cursor: pointer;
+	border: 5px solid rgba(0,0,0,0);
+	width: 200px;
+	height: 112px;
+	float: left;
+	margin: 0px;
+	background-size: cover;
+	background-repeat:none;
+	background-clip: padding-box;
+	border-radius: 3px;
+}
+
+.thumbnail:hover {
+	border-color: rgba(255,255,255,0.75);
+}
+
+.thumbnail-active {
+	border-color: rgba(0,0,0,0.75);
+}
+
+.thumbtext {
+	opacity: 0;
+	padding-top: 20px;
+	transition: opacity 0.25s, padding-top 0.1s ease-in;
+}
+
+.thumbtext:hover {
+	padding-top: 0;
+	opacity: 0.8;
+}
+
+.thumbtext-active {
+	padding-top: 0;
+	opacity: 1;
+}
+
+#preview1 {
+	background-image: url(img/preview1.png);
+}
+#preview2 {
+	background-image: url(img/preview2.png);
+}
+#preview3 {
+	background-image: url(img/preview3.png);
+}
+#preview4 {
+	background-image: url(img/preview4.png);
+}

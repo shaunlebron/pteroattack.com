@@ -40,6 +40,16 @@ html, body	{
 	margin-top:-10px;
 }
 
+#header #summary {
+	width:600px;
+	margin: 0 auto;
+	margin-top: 20px;
+	text-align: center;
+	font-size: 14px;
+	font-family: "Arial";
+	color: #444;
+}
+
 #logo {
 	width: 300px;
 	margin:0px auto;

@@ -47,7 +47,7 @@
 		}
 	}
 	function playYoutube(id) {
-		var src = "http://www.youtube.com/embed/" + id + "?rel=0&amp;showinfo=0&amp;controls=0&amp;autoplay=1&amp;loop=1&amp;playlist="+id;
+		var src = "http://www.youtube.com/embed/" + id + "?rel=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;playlist="+id;
 		$('#iphone-screen').html('<iframe src="' + src + '" height="100%" width="100%" allowfullscreen="" frameborder="0"></iframe>');
 	}
 	function loopVid(src) {
@@ -63,7 +63,7 @@
 	}
 	$(function(){
 		selectIndex(1);
-		initVid();
+		//initVid();
 	});
 </script>
 <div class="full-width">
@@ -78,7 +78,7 @@
 			<div id="appstore">
 				<img src="img/appstore.png"/>
 			</div>
-			<div id="iphone-frame"><div id="iphone-screen"></div></div>
+			<div id="iphone-frame"><div id="iphone-screen"><img width="100%" src="img/vid_preview.png" style="cursor: pointer" onclick="clickIndex(1)"/></div></div>
 			<div id="thumbnails">
 				<a onclick="clickIndex(1)"><div class="thumbnail" id="preview1"> </div></a>
 				<a onclick="clickIndex(2)"><div class="thumbnail" id="preview2"> </div></a>

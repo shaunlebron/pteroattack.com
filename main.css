@@ -3,6 +3,13 @@ html, body	{
 }
 
 @font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(http://themes.googleusercontent.com/static/fonts/robotoslab/v2/y7lebkjgREBJK96VQi37ZrrIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
+
+@font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -200,6 +207,7 @@ padding-bottom: 11.84%;
 	line-height: 1.5em;
 	padding-left: 40px;
 	padding-right: 10px;
+	padding-bottom: 20px;
 }
 
 #learn-wrapper #nav li {
@@ -237,25 +245,73 @@ padding-bottom: 11.84%;
 	margin-bottom: 10px;
 }
 
-#learn-wrapper p a:link {
-	text-decoration: none;
-	color: #000;
-}
-#learn-wrapper p a:hover {
-	text-decoration: none;
-	color: #000;
-}
-#learn-wrapper p a:active {
-	text-decoration: none;
-	color: #000;
-}
-#learn-wrapper p a:visited {
-	text-decoration: none;
-	color: #000;
+#footer-wrapper {
+	font-family: "Roboto Slab";
+	width: 100%;
+	background-color: #333;
+	color: #555;
 }
 
-#footer-wrapper {
-	width: 100%;
-	min-height: 200px;
-	background-color: #333;
+#footer-wrapper #footer {
+	width: 640px;
+	height: 120px;
+	line-height: 120px;
+	margin: 0 auto;
+	text-align: center;
 }
+
+#footer-wrapper #footer a {
+	color: #888;
+	text-decoration: none;
+}
+
+#footer-wrapper #footer a:hover {
+	color: #EEE;
+}
+
+#footer-wrapper #footer img {
+	vertical-align: middle;
+}
+
+#footer .inline {
+	display: inline-block;
+	margin: 0 2px;
+}
+#footer .inline .sep {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+#copyright {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	font-family: "Roboto";
+	text-align: center;
+	color: #999;
+}
+
+#octopus {
+	background: url(img/octopus.png);
+	background-repeat: no-repeat;
+	background-position: 50% 120px;
+	transition: background-position 0.2s ease-in;
+}
+
+#octopus:hover {
+	background-position: 50% 80px;
+}
+
+#hygoon {
+	background: url(img/peek.png);
+	background-repeat: no-repeat;
+	background-position: 50% 120px;
+	transition: background-position 0.2s ease-in;
+}
+
+#hygoon:hover {
+	background-position: 50% 60px;
+}
+
+

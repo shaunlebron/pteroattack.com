@@ -195,6 +195,11 @@ padding-bottom: 11.84%;
 	color: #555;
 	text-decoration: none;
 	display: block;
+	transition: background-color 1s;
+}
+
+#question-wrapper:hover {
+	background-color: #FFF;
 }
 
 #question-wrapper img {

@@ -94,21 +94,28 @@
 
 <script>
 	var learnOn = false;
-	var fullHeight = 580;
-	function updateLearnHeight(h) {
-		fullHeight = h;
+	var minHeight = 580;
+	function updateLearnHeight() {
+		if (learnOn) {
+			var h = $('#learn-wrapper #content').outerHeight(true);
+			h = Math.max(h, minHeight);
+			console.log(h);
+			$('#learn-wrapper').css({'height': h+'px'});
+		}
 	}
+
 	function toggleLearn() {
 		var elm = $('#learn-wrapper');
 		if (learnOn) {
 			elm.css({'height': 0, 'opacity': 0});
 		}
 		else {
-			$('#learn-wrapper').css({'height': fullHeight+'px', 'opacity': 1});
+			$('#learn-wrapper').css({'height': 580+'px', 'opacity': 1});
 		}
 		learnOn = !learnOn;
 	}
 	function loadArticle(name) {
+
 		function fixLinks(htmlTree) {
 			if (htmlTree[0] === "img") {
 				var attrs = htmlTree[1];
@@ -128,6 +135,7 @@
 				}
 			}
 		}
+
 		var src = "learn/"+name+".md";
 		$.ajax({
 			url: src,
@@ -136,6 +144,7 @@
 				fixLinks(htmlTree);
 				var html = markdown.renderJsonML(htmlTree);
 				$('#learn-wrapper > #content').html(html);
+				updateLearnHeight();
 			},
 			error: function() {
 				$('#learn-wrapper > #content').html('failed');
@@ -148,6 +157,10 @@
 			'color': '#AA4B69',
 		});
 	}
+
+	$(function(){
+		window.setInterval(updateLearnHeight, 1000);
+	});
 </script>
 <div id="question-wrapper" onclick="toggleLearn()">
 	<img src="img/brain.png">Want to learn <em>how</em> we made it?
@@ -162,7 +175,7 @@
 		<h2>Intro</h2>
 		<ul>
 			<li id='nav-welcome' onclick="loadArticle('welcome')">Welcome!</li>
-			<li id='nav-quicklook' onclick="loadArticle('quicklook')">Quick Look</li>
+			<li id='nav-quick-look' onclick="loadArticle('quick-look')">Quick Look</li>
 		</ul>
 		<h2>Design</h2>
 		<ul>
@@ -177,7 +190,7 @@
 			<li id='nav-paths' onclick="loadArticle('paths')">Paths</li>
 			<li id='nav-textures' onclick="loadArticle('textures')">Textures</li>
 			<li id='nav-env' onclick="loadArticle('env')">Environments</li>
-			<li id='nav-layout' onclick="loadArticle('layout')">Layouts</li>
+			<li id='nav-layouts' onclick="loadArticle('layouts')">Layouts</li>
 			<li id='nav-aiming' onclick="loadArticle('aiming')">Aiming</li>
 		</ul>
 		<h2>Misc</h2>

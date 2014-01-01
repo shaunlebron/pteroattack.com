@@ -63,18 +63,19 @@ html, body	{
 
 #header #summary {
 	width:600px;
-	border-radius: 5px;
-	background: #E2E2E2;
 	height:100px;
 	margin: 0 auto;
-	text-align: center;
-	font-size: 14px;
-	font-family: "Roboto";
-	color: #444;
 }
 
 #header #summary p {
+	font-size: 14px;
+	font-family: "Roboto";
+	color: #111;
+	text-align: center;
 	padding: 10px;
+	background: #FFF;
+	border-radius:10px;
+	border-bottom: 10px solid #DDD;
 }
 
 #logo {

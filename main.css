@@ -223,8 +223,9 @@ padding-bottom: 11.84%;
 
 #learn-wrapper #nav {
 	position: absolute;
-	top: 20px;
+	top: 0;
 	left: 0;
+	margin: 20px 0;
 	border-radius: 5px;
 	background-color: #EEE;
 	border: 5px solid #EEE;
@@ -263,6 +264,7 @@ padding-bottom: 11.84%;
 
 #learn-wrapper #content ul {
 	margin-bottom: 20px;
+	color: #333;
 }
 
 #learn-wrapper #content li {

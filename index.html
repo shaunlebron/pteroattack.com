@@ -94,11 +94,13 @@
 
 <script>
 	var learnOn = false;
-	var minHeight = 580;
+	function getMinHeight() {
+		return $('#learn-wrapper #nav').outerHeight(true);
+	}
 	function updateLearnHeight() {
 		if (learnOn) {
 			var h = $('#learn-wrapper #content').outerHeight(true);
-			h = Math.max(h, minHeight);
+			h = Math.max(h, getMinHeight());
 			console.log(h);
 			$('#learn-wrapper').css({'height': h+'px'});
 		}
@@ -110,7 +112,7 @@
 			elm.css({'height': 0, 'opacity': 0});
 		}
 		else {
-			$('#learn-wrapper').css({'height': 580+'px', 'opacity': 1});
+			$('#learn-wrapper').css({'height': getMinHeight()+'px', 'opacity': 1});
 		}
 		learnOn = !learnOn;
 	}
@@ -172,9 +174,10 @@
 		</div>
 	</div>
 	<div id="nav">
-		<h2>Intro</h2>
+		<h2>Welcome</h2>
 		<ul>
-			<li id='nav-welcome' onclick="loadArticle('welcome')">Welcome!</li>
+			<li id='nav-preface' onclick="loadArticle('preface')">Preface</li>
+			<li id='nav-intro' onclick="loadArticle('intro')">Intro</li>
 			<li id='nav-quick-look' onclick="loadArticle('quick-look')">Quick Look</li>
 		</ul>
 		<h2>Design</h2>
@@ -195,8 +198,10 @@
 		</ul>
 		<h2>Misc</h2>
 		<ul>
-			<li id='nav-devops' onclick="loadArticle('devops')">Operations</li>
+			<li id='nav-architecture' onclick="loadArticle('architecture')">Architecture</li>
 			<li id='nav-files' onclick="loadArticle('files')">Files</li>
+			<li id='nav-devops' onclick="loadArticle('devops')">DevOps</li>
+			<li id='nav-source-code' onclick="loadArticle('source-code')">Source Code</li>
 		</ul>
 	</div>
 </div>

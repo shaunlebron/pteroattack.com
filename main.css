@@ -51,15 +51,30 @@ html, body	{
 	margin-top:-10px;
 }
 
+#header #pointer {
+	width:600px;
+	height:20px;
+	margin: 0 auto;
+	background: url(img/pointer.png);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	transition: background-position 0.3s;
+}
+
 #header #summary {
 	width:600px;
+	border-radius: 5px;
+	background: #E2E2E2;
 	height:100px;
 	margin: 0 auto;
-	margin-top: 20px;
 	text-align: center;
 	font-size: 14px;
 	font-family: "Roboto";
 	color: #444;
+}
+
+#header #summary p {
+	padding: 10px;
 }
 
 #logo {

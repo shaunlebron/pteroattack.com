@@ -239,6 +239,7 @@ padding-bottom: 11.84%;
 #learn-wrapper #nav li {
 	margin-left: 20px;
 	color: #555;
+	cursor: pointer;
 }
 
 #learn-wrapper #nav h2 {
@@ -252,6 +253,16 @@ padding-bottom: 11.84%;
 	padding-top: 100px;
 	width: 640px;
 	font-family: "Roboto";
+}
+
+#learn-wrapper #content p {
+	margin: 0;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+#learn-wrapper #content img {
+	max-width: 100%;
 }
 
 @media (max-width: 1028px) {

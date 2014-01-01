@@ -4,7 +4,8 @@
 <head>
 <meta charset="utf-8">
 <title>Pterodactyl Attack</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<script src="lib/jquery-1.3.2.min.js"></script> 
+<script src="lib/markdown.js"></script>
 <link rel="stylesheet" href="reset.css" type="text/css" />
 <link rel="stylesheet" href="main.css" type="text/css" />
 </head>
@@ -107,6 +108,46 @@
 		}
 		learnOn = !learnOn;
 	}
+	function loadArticle(name) {
+		function fixLinks(htmlTree) {
+			if (htmlTree[0] === "img") {
+				var attrs = htmlTree[1];
+				var prefix = "img/";
+				if (attrs.src.substring(0, prefix.length) === prefix) {
+					attrs.src = "learn/" + attrs.src;
+				}
+			}
+			else {
+				var i, len=htmlTree.length;
+				var node;
+				for (i=0; i<len; i++) {
+					node = htmlTree[i];
+					if (Array.isArray(node)) {
+						fixLinks(node);
+					}
+				}
+			}
+		}
+		var src = "learn/"+name+".md";
+		$.ajax({
+			url: src,
+			success: function(data) {
+				var htmlTree = markdown.toHTMLTree(data);
+				fixLinks(htmlTree);
+				var html = markdown.renderJsonML(htmlTree);
+				$('#learn-wrapper > #content').html(html);
+			},
+			error: function() {
+				$('#learn-wrapper > #content').html('failed');
+			}
+		});
+		$('#learn-wrapper #nav li').css({
+			'color':'#555',
+		});
+		$('#nav-'+name).css({
+			'color': '#AA4B69',
+		});
+	}
 </script>
 <div id="question-wrapper" onclick="toggleLearn()">
 	<img src="img/brain.png">Want to learn <em>how</em> we made it?
@@ -120,29 +161,29 @@
 	<div id="nav">
 		<h2>Intro</h2>
 		<ul>
-			<li>Welcome!</li>
-			<li>Quick Look</li>
+			<li id='nav-welcome' onclick="loadArticle('welcome')">Welcome!</li>
+			<li id='nav-quicklook' onclick="loadArticle('quicklook')">Quick Look</li>
 		</ul>
 		<h2>Design</h2>
 		<ul>
-			<li>Flow</li>
-			<li>Gameplay</li>
-			<li>Tutorial</li>
-			<li>Surprise</li>
+			<li id='nav-flow' onclick="loadArticle('flow')">Flow</li>
+			<li id='nav-gameplay' onclick="loadArticle('gameplay')">Gameplay</li>
+			<li id='nav-tutorial' onclick="loadArticle('tutorial')">Tutorial</li>
+			<li id='nav-surprise' onclick="loadArticle('surprise')">Surprise</li>
 		</ul>
 		<h2>Tech</h2>
 		<ul>
-			<li>Drawing</li>
-			<li>Paths</li>
-			<li>Textures</li>
-			<li>Environments</li>
-			<li>Layouts</li>
-			<li>Aiming</li>
+			<li id='nav-drawing' onclick="loadArticle('drawing')">Drawing</li>
+			<li id='nav-paths' onclick="loadArticle('paths')">Paths</li>
+			<li id='nav-textures' onclick="loadArticle('textures')">Textures</li>
+			<li id='nav-env' onclick="loadArticle('env')">Environments</li>
+			<li id='nav-layout' onclick="loadArticle('layout')">Layouts</li>
+			<li id='nav-aiming' onclick="loadArticle('aiming')">Aiming</li>
 		</ul>
 		<h2>Misc</h2>
 		<ul>
-			<li>Operations</li>
-			<li>Files</li>
+			<li id='nav-devops' onclick="loadArticle('devops')">Operations</li>
+			<li id='nav-files' onclick="loadArticle('files')">Files</li>
 		</ul>
 	</div>
 </div>

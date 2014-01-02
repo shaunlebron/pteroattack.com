@@ -10,6 +10,13 @@ html, body	{
 }
 
 @font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(http://themes.googleusercontent.com/static/fonts/robotoslab/v2/dazS1PrQQuCxC3iOAJFEJRbnBKKEOwRKgsHDreGcocg.woff) format('woff');
+}
+
+@font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -254,6 +261,32 @@ padding-bottom: 11.84%;
 	padding-bottom: 100px;
 	width: 640px;
 	font-family: "Roboto";
+}
+
+#learn-wrapper #content h1 {
+	font-family: "Roboto Slab";
+	font-size: 24px;
+	font-weight: bold;
+}
+#learn-wrapper #content h2 {
+	font-family: "Roboto Slab";
+	font-size: 22px;
+	font-weight: bold;
+}
+#learn-wrapper #content h3 {
+	font-family: "Roboto Slab";
+	font-size: 20px;
+	font-weight: bold;
+}
+#learn-wrapper #content h4 {
+	font-family: "Roboto Slab";
+	font-size: 18px;
+	font-weight: bold;
+}
+#learn-wrapper #content h5 {
+	font-family: "Roboto Slab";
+	font-size: 16px;
+	font-weight: bold;
 }
 
 #learn-wrapper #content p {

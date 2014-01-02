@@ -105,7 +105,34 @@
 			$('#learn-wrapper').css({'height': h+'px'});
 		}
 	}
+	var $navBar;
+	var $learnWrapper;
+	function updateNavPosition() {
+		if (learnOn) {
+			var scrollPos = $(window).scrollTop();
+			var learnTop = $learnWrapper.offset().top;
+			var learnHeight = $learnWrapper.outerHeight();
+			var navHeight = $navBar.outerHeight(true);
 
+			var minY = learnTop;
+			var maxY = Math.max(learnTop, learnTop+learnHeight - navHeight);
+
+			var y = scrollPos;
+			y = Math.max(minY, y);
+			y = Math.min(maxY, y);
+
+			y -= learnTop;
+
+			$navBar.css({'top': y+"px"});
+		}
+	}
+	function refreshScrollPosition() {
+		var scrollPos = $(window).scrollTop();
+		var learnTop = $learnWrapper.offset().top;
+		if (scrollPos > learnTop) {
+			$(window).scrollTop(learnTop);
+		}
+	}
 	function toggleLearn() {
 		var elm = $('#learn-wrapper');
 		if (learnOn) {
@@ -158,10 +185,15 @@
 		$('#nav-'+name).css({
 			'color': '#AA4B69',
 		});
+
+		refreshScrollPosition();
 	}
 
 	$(function(){
 		window.setInterval(updateLearnHeight, 1000);
+		$navBar = $('#learn-wrapper #nav');
+		$learnWrapper = $('#learn-wrapper');
+		$(window).scroll(updateNavPosition);
 	});
 </script>
 <div id="question-wrapper" onclick="toggleLearn()">

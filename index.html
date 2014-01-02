@@ -93,6 +93,8 @@
 </div>
 
 <script>
+	$(function(){
+	});
 	var learnOn = false;
 	function getMinHeight() {
 		return $('#learn-wrapper #nav').outerHeight(true);
@@ -101,7 +103,6 @@
 		if (learnOn) {
 			var h = $('#learn-wrapper #content').outerHeight(true);
 			h = Math.max(h, getMinHeight());
-			console.log(h);
 			$('#learn-wrapper').css({'height': h+'px'});
 		}
 	}
@@ -128,22 +129,59 @@
 	}
 	function refreshScrollPosition() {
 		var scrollPos = $(window).scrollTop();
-		var learnTop = $learnWrapper.offset().top;
+		var learnTop = $('#question-wrapper').offset().top;
 		if (scrollPos > learnTop) {
 			$(window).scrollTop(learnTop);
 		}
 	}
+	function initWithHash(hash) {
+		var name = hash.substr(1);
+		var names = [
+			'preface',
+			'intro',
+			'quick-look',
+			'flow',
+			'gameplay',
+			'tutorial',
+			'surprise',
+			'drawing',
+			'paths',
+			'textures',
+			'env',
+			'layouts',
+			'aiming',
+			'architecture',
+			'files',
+			'devops',
+			'source-code',
+		];
+		var i,len=names.length;
+		for (i=0; i<len; i++) {
+			if (names[i] == name) {
+				initWithLearn();
+				loadArticle(name);
+				break;
+			}
+		}
+	}
+	function initWithLearn() {
+		learnOn = true;
+		$learnWrapper.css({'height': getMinHeight()+'px'});
+		$(window).scrollTop($('#question-wrapper').offset().top);
+	}
 	function toggleLearn() {
-		var elm = $('#learn-wrapper');
+		window.location.hash = "#learn";
+		learnOn = !learnOn;
 		if (learnOn) {
-			elm.css({'height': 0, 'opacity': 0});
+			$learnWrapper.css({'height': getMinHeight()+'px'});
+			$(window).scrollTop($('#question-wrapper').offset().top);
 		}
 		else {
-			$('#learn-wrapper').css({'height': getMinHeight()+'px', 'opacity': 1});
+			$learnWrapper.css({'height': 0});
 		}
-		learnOn = !learnOn;
 	}
 	function loadArticle(name) {
+		window.location.hash = "#"+name;
 
 		function fixLinks(htmlTree) {
 			if (htmlTree[0] === "img") {
@@ -190,9 +228,16 @@
 	}
 
 	$(function(){
-		window.setInterval(updateLearnHeight, 1000);
 		$navBar = $('#learn-wrapper #nav');
 		$learnWrapper = $('#learn-wrapper');
+		var hash = window.location.hash;
+		if (hash == "#learn") {
+			initWithLearn();
+		}
+		else {
+			initWithHash(hash);
+		}
+		window.setInterval(updateLearnHeight, 1000);
 		$(window).scroll(updateNavPosition);
 	});
 </script>
@@ -208,32 +253,32 @@
 	<div id="nav">
 		<h2>Welcome</h2>
 		<ul>
-			<li id='nav-preface' onclick="loadArticle('preface')">Preface</li>
-			<li id='nav-intro' onclick="loadArticle('intro')">Intro</li>
-			<li id='nav-quick-look' onclick="loadArticle('quick-look')">Quick Look</li>
+			<a href="#preface"><li id='nav-preface' onclick="loadArticle('preface')">Preface</li></a>
+			<a href="#intro"><li id='nav-intro' onclick="loadArticle('intro')">Intro</li></a>
+			<a href="#quick-look"><li id='nav-quick-look' onclick="loadArticle('quick-look')">Quick Look</li></a>
 		</ul>
 		<h2>Design</h2>
 		<ul>
-			<li id='nav-flow' onclick="loadArticle('flow')">Flow</li>
-			<li id='nav-gameplay' onclick="loadArticle('gameplay')">Gameplay</li>
-			<li id='nav-tutorial' onclick="loadArticle('tutorial')">Tutorial</li>
-			<li id='nav-surprise' onclick="loadArticle('surprise')">Surprise</li>
+			<a href="#flow"><li id='nav-flow' onclick="loadArticle('flow')">Flow</li></a>
+			<a href="#gameplay"><li id='nav-gameplay' onclick="loadArticle('gameplay')">Gameplay</li></a>
+			<a href="#tutorial"><li id='nav-tutorial' onclick="loadArticle('tutorial')">Tutorial</li></a>
+			<a href="#surprise"><li id='nav-surprise' onclick="loadArticle('surprise')">Surprise</li></a>
 		</ul>
 		<h2>Tech</h2>
 		<ul>
-			<li id='nav-drawing' onclick="loadArticle('drawing')">Drawing</li>
-			<li id='nav-paths' onclick="loadArticle('paths')">Paths</li>
-			<li id='nav-textures' onclick="loadArticle('textures')">Textures</li>
-			<li id='nav-env' onclick="loadArticle('env')">Environments</li>
-			<li id='nav-layouts' onclick="loadArticle('layouts')">Layouts</li>
-			<li id='nav-aiming' onclick="loadArticle('aiming')">Aiming</li>
+			<a href="#drawing"><li id='nav-drawing' onclick="loadArticle('drawing')">Drawing</li></a>
+			<a href="#paths"><li id='nav-paths' onclick="loadArticle('paths')">Paths</li></a>
+			<a href="#textures"><li id='nav-textures' onclick="loadArticle('textures')">Textures</li></a>
+			<a href="#env"><li id='nav-env' onclick="loadArticle('env')">Environments</li></a>
+			<a href="#layouts"><li id='nav-layouts' onclick="loadArticle('layouts')">Layouts</li></a>
+			<a href="#aiming"><li id='nav-aiming' onclick="loadArticle('aiming')">Aiming</li></a>
 		</ul>
 		<h2>Misc</h2>
 		<ul>
-			<li id='nav-architecture' onclick="loadArticle('architecture')">Architecture</li>
-			<li id='nav-files' onclick="loadArticle('files')">Files</li>
-			<li id='nav-devops' onclick="loadArticle('devops')">DevOps</li>
-			<li id='nav-source-code' onclick="loadArticle('source-code')">Source Code</li>
+			<a href="#architecture"><li id='nav-architecture' onclick="loadArticle('architecture')">Architecture</li></a>
+			<a href="#files"><li id='nav-files' onclick="loadArticle('files')">Files</li></a>
+			<a href="#devops"><li id='nav-devops' onclick="loadArticle('devops')">DevOps</li></a>
+			<a href="#source-code"><li id='nav-source-code' onclick="loadArticle('source-code')">Source Code</li></a>
 		</ul>
 	</div>
 </div>

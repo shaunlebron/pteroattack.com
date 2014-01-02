@@ -224,8 +224,6 @@ padding-bottom: 11.84%;
 	height: 0px;
 	overflow: hidden;
 	position: relative;
-	opacity: 0;
-	transition: height 1s, opacity 1s;
 }
 
 #learn-wrapper #nav {
@@ -241,6 +239,11 @@ padding-bottom: 11.84%;
 	padding-left: 40px;
 	padding-right: 10px;
 	padding-bottom: 20px;
+}
+
+#learn-wrapper #nav a {
+	text-decoration: none;
+	color: inherit;
 }
 
 #learn-wrapper #nav li {

@@ -1,5 +1,7 @@
-This is the marketing (landing) page for the mobile game, Pterodactyl Attack by
-Hygoon, hosted here on GitHub Pages: <http://pteroattack.com>
+## Pterodactyl Attack - promotional page
+
+This is the landing page for the mobile game, Pterodactyl Attack by Hygoon,
+hosted here on GitHub Pages: <http://pteroattack.com>
 
 [![pterosite](img/pterosite.png)](http://pteroattack.com)
 

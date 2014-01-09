@@ -97,7 +97,7 @@
 	});
 	var learnOn = false;
 	function getMinHeight() {
-		return $('#learn-wrapper #nav').outerHeight(true);
+		return $navBar.outerHeight(true);
 	}
 	function updateLearnHeight() {
 		if (learnOn) {
@@ -210,11 +210,11 @@
 				var htmlTree = markdown.toHTMLTree(data);
 				fixLinks(htmlTree);
 				var html = markdown.renderJsonML(htmlTree);
-				$('#learn-wrapper > #content').html(html);
+				$('#learn-wrapper > #content > #article').html(html);
 				updateLearnHeight();
 			},
 			error: function() {
-				$('#learn-wrapper > #content').html('failed');
+				$('#learn-wrapper > #content > #article').html('failed');
 			}
 		});
 		$('#learn-wrapper #nav li').css({
@@ -228,7 +228,7 @@
 	}
 
 	$(function(){
-		$navBar = $('#learn-wrapper #nav');
+		$navBar = $('#learn-wrapper #nav-wrapper');
 		$learnWrapper = $('#learn-wrapper');
 		var hash = window.location.hash;
 		if (hash == "#learn") {
@@ -245,49 +245,52 @@
 	<img src="img/brain.png">Want to learn <em>how</em> we made it?
 </div>
 <div id="learn-wrapper">
+	<div id="writer-stamp">
+	</div>
 	<div id="content">
 		<div id="intro">
 		here's how we did it!<br/><img src="img/learn_arrow.png"/>
 		</div>
 	</div>
-	<div id="nav">
-		<h2>Welcome</h2>
-		<ul>
-			<a href="#preface"><li id='nav-preface' onclick="loadArticle('preface')">Preface</li></a>
-			<a href="#intro"><li id='nav-intro' onclick="loadArticle('intro')">Intro</li></a>
-			<a href="#quick-look"><li id='nav-quick-look' onclick="loadArticle('quick-look')">Quick Look</li></a>
-		</ul>
-		<h2>Design</h2>
-		<ul>
-			<a href="#flow"><li id='nav-flow' onclick="loadArticle('flow')">Flow</li></a>
-			<a href="#gameplay"><li id='nav-gameplay' onclick="loadArticle('gameplay')">Gameplay</li></a>
-			<a href="#tutorial"><li id='nav-tutorial' onclick="loadArticle('tutorial')">Tutorial</li></a>
-			<a href="#surprise"><li id='nav-surprise' onclick="loadArticle('surprise')">Surprise</li></a>
-		</ul>
-		<h2>Tech</h2>
-		<ul>
-			<a href="#drawing"><li id='nav-drawing' onclick="loadArticle('drawing')">Drawing</li></a>
-			<a href="#paths"><li id='nav-paths' onclick="loadArticle('paths')">Paths</li></a>
-			<a href="#textures"><li id='nav-textures' onclick="loadArticle('textures')">Textures</li></a>
-			<a href="#env"><li id='nav-env' onclick="loadArticle('env')">Environments</li></a>
-			<a href="#layouts"><li id='nav-layouts' onclick="loadArticle('layouts')">Layouts</li></a>
-			<a href="#aiming"><li id='nav-aiming' onclick="loadArticle('aiming')">Aiming</li></a>
-		</ul>
-		<h2>Misc</h2>
-		<ul>
-			<a href="#architecture"><li id='nav-architecture' onclick="loadArticle('architecture')">Architecture</li></a>
-			<a href="#files"><li id='nav-files' onclick="loadArticle('files')">Files</li></a>
-			<a href="#devops"><li id='nav-devops' onclick="loadArticle('devops')">DevOps</li></a>
-			<a href="#source-code"><li id='nav-source-code' onclick="loadArticle('source-code')">Source Code</li></a>
-		</ul>
+	<div id="nav-wrapper">
+		<div id="nav">
+			<h2>Welcome</h2>
+			<ul>
+				<a href="#preface"><li id='nav-preface' onclick="loadArticle('preface')">Preface</li></a>
+				<a href="#intro"><li id='nav-intro' onclick="loadArticle('intro')">Intro</li></a>
+				<a href="#quick-look"><li id='nav-quick-look' onclick="loadArticle('quick-look')">Quick Look</li></a>
+			</ul>
+			<h2>Design</h2>
+			<ul>
+				<a href="#flow"><li id='nav-flow' onclick="loadArticle('flow')">Flow</li></a>
+				<a href="#gameplay"><li id='nav-gameplay' onclick="loadArticle('gameplay')">Gameplay</li></a>
+				<a href="#tutorial"><li id='nav-tutorial' onclick="loadArticle('tutorial')">Tutorial</li></a>
+				<a href="#surprise"><li id='nav-surprise' onclick="loadArticle('surprise')">Surprise</li></a>
+			</ul>
+			<h2>Tech</h2>
+			<ul>
+				<a href="#drawing"><li id='nav-drawing' onclick="loadArticle('drawing')">Drawing</li></a>
+				<a href="#paths"><li id='nav-paths' onclick="loadArticle('paths')">Paths</li></a>
+				<a href="#textures"><li id='nav-textures' onclick="loadArticle('textures')">Textures</li></a>
+				<a href="#env"><li id='nav-env' onclick="loadArticle('env')">Environments</li></a>
+				<a href="#layouts"><li id='nav-layouts' onclick="loadArticle('layouts')">Layouts</li></a>
+				<a href="#aiming"><li id='nav-aiming' onclick="loadArticle('aiming')">Aiming</li></a>
+			</ul>
+			<h2>Misc</h2>
+			<ul>
+				<a href="#architecture"><li id='nav-architecture' onclick="loadArticle('architecture')">Architecture</li></a>
+				<a href="#files"><li id='nav-files' onclick="loadArticle('files')">Files</li></a>
+				<a href="#devops"><li id='nav-devops' onclick="loadArticle('devops')">DevOps</li></a>
+				<a href="#source-code"><li id='nav-source-code' onclick="loadArticle('source-code')">Source Code</li></a>
+			</ul>
+		</div>
+		<div id="octopus">
+			<a href="http://twitter.com/shaunewilliams"><em>written by</em><br/>@shaunewilliams</a>
+		</div>
 	</div>
 </div>
 <div id="footer-wrapper">
 	<div id="footer">
-		<div class="inline" id="octopus">
-			<a href="http://twitter.com/shaunewilliams">@shaunewilliams</a>
-		</div>
-		<div class="inline sep">-</div>
 		<div class="inline" id="hygoon">
 			<a href="http://hygoon.com">Hygoon Studio</a>
 		</div>

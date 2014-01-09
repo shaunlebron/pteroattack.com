@@ -226,11 +226,14 @@ padding-bottom: 11.84%;
 	position: relative;
 }
 
-#learn-wrapper #nav {
+#learn-wrapper #nav-wrapper {
 	position: absolute;
 	top: 0;
 	left: 0;
-	margin: 20px 0;
+	margin-top: 20px;
+}
+
+#learn-wrapper #nav {
 	border-radius: 5px;
 	background-color: #EEE;
 	border: 5px solid #EEE;
@@ -240,6 +243,39 @@ padding-bottom: 11.84%;
 	padding-right: 10px;
 	padding-bottom: 20px;
 }
+
+#learn-wrapper #writer-stamp {
+	display:none;
+}
+
+#octopus {
+	background: url(img/octopus.png);
+	background-repeat: no-repeat;
+	background-position: 50% 120px;
+	transition: background-position 0.2s ease-in;
+	font-family: "Roboto Slab", sans-serif;
+}
+
+#octopus em {
+	text-decoration: none;
+	font-size: 12px;
+	font-style: normal;
+}
+
+#octopus a {
+	color: #888;
+	text-align: left;
+	text-decoration: none;
+	display: block;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 40px;
+}
+
+#octopus:hover {
+	background-position: 50% 70px;
+}
+
 
 #learn-wrapper #nav a {
 	text-decoration: none;
@@ -387,17 +423,6 @@ padding-bottom: 11.84%;
 	font-family: "Roboto";
 	text-align: center;
 	color: #999;
-}
-
-#octopus {
-	background: url(img/octopus.png);
-	background-repeat: no-repeat;
-	background-position: 50% 120px;
-	transition: background-position 0.2s ease-in;
-}
-
-#octopus:hover {
-	background-position: 50% 80px;
 }
 
 #hygoon {

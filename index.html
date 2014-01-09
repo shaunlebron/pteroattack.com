@@ -210,11 +210,11 @@
 				var htmlTree = markdown.toHTMLTree(data);
 				fixLinks(htmlTree);
 				var html = markdown.renderJsonML(htmlTree);
-				$('#learn-wrapper > #content > #article').html(html);
+				$('#learn-wrapper > #content').html(html);
 				updateLearnHeight();
 			},
 			error: function() {
-				$('#learn-wrapper > #content > #article').html('failed');
+				$('#learn-wrapper > #content').html('failed');
 			}
 		});
 		$('#learn-wrapper #nav li').css({

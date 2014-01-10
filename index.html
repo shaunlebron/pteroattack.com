@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <title>Pterodactyl Attack</title>
-<script src="lib/jquery-1.3.2.min.js"></script> 
+<script src="lib/jquery-1.10.2.min.js"></script> 
 <script src="lib/markdown.js"></script>
 <link rel="stylesheet" href="reset.css" type="text/css" />
 <link rel="stylesheet" href="main.css" type="text/css" />
@@ -93,9 +93,9 @@
 </div>
 
 <script>
-	$(function(){
-	});
 	var learnOn = false;
+	var $navBar;
+	var $learnWrapper;
 	function getMinHeight() {
 		return $navBar.outerHeight(true);
 	}
@@ -106,8 +106,6 @@
 			$('#learn-wrapper').css({'height': h+'px'});
 		}
 	}
-	var $navBar;
-	var $learnWrapper;
 	function updateNavPosition() {
 		if (learnOn) {
 			var scrollPos = $(window).scrollTop();
@@ -127,62 +125,36 @@
 			$navBar.css({'top': y+"px"});
 		}
 	}
-	function refreshScrollPosition() {
+	function makeQuestionVisible() {
 		var scrollPos = $(window).scrollTop();
 		var learnTop = $('#question-wrapper').offset().top;
-		if (scrollPos > learnTop) {
-			$(window).scrollTop(learnTop);
-		}
+		$(window).scrollTop(learnTop);
 	}
-	function initWithHash(hash) {
-		var name = hash.substr(1);
-		var names = [
-			'preface',
-			'intro',
-			'quick-look',
-			'flow',
-			'gameplay',
-			'tutorial',
-			'surprise',
-			'drawing',
-			'paths',
-			'textures',
-			'env',
-			'layouts',
-			'aiming',
-			'architecture',
-			'files',
-			'devops',
-			'source-code',
-		];
-		var i,len=names.length;
-		for (i=0; i<len; i++) {
-			if (names[i] == name) {
-				initWithLearn();
-				loadArticle(name);
-				break;
-			}
-		}
+	function closeLearn() {
+		learnOn = false;
+		$learnWrapper.css({'height': 0});
 	}
-	function initWithLearn() {
+	function openLearn() {
 		learnOn = true;
 		$learnWrapper.css({'height': getMinHeight()+'px'});
 		$(window).scrollTop($('#question-wrapper').offset().top);
 	}
-	function toggleLearn() {
-		window.location.hash = "#learn";
+	function clickLearn() {
 		learnOn = !learnOn;
 		if (learnOn) {
-			$learnWrapper.css({'height': getMinHeight()+'px'});
-			$(window).scrollTop($('#question-wrapper').offset().top);
+			openLearn();
 		}
 		else {
-			$learnWrapper.css({'height': 0});
+			closeLearn();
 		}
 	}
-	function loadArticle(name) {
-		window.location.hash = "#"+name;
+	function loadInitialContent() {
+		var html = $('#learn-wrapper > #initial-content').html();
+		$('#learn-wrapper > #content').html(html);
+	}
+	function loadArticleName(name) {
 
+		// crawl the markdown html tree, correcting "img/*" links to "learn/img/*"
 		function fixLinks(htmlTree) {
 			if (htmlTree[0] === "img") {
 				var attrs = htmlTree[1];
@@ -203,6 +175,7 @@
 			}
 		}
 
+		// load article markdown content and render
 		var src = "learn/"+name+".md";
 		$.ajax({
 			url: src,
@@ -217,71 +190,117 @@
 				$('#learn-wrapper > #content').html('failed');
 			}
 		});
+
+		// highlight only the current article in the navbar
 		$('#learn-wrapper #nav li').css({
 			'color':'#555',
 		});
 		$('#nav-'+name).css({
 			'color': '#AA4B69',
 		});
-
-		refreshScrollPosition();
 	}
 
 	$(function(){
+		// set jquery element variables
 		$navBar = $('#learn-wrapper #nav-wrapper');
 		$learnWrapper = $('#learn-wrapper');
+
+		// populate initial article body
+		loadInitialContent();
+
+		// initialize page based on location hash in url
 		var hash = window.location.hash;
 		if (hash == "#learn") {
-			initWithLearn();
+			openLearn();
 		}
-		else {
-			initWithHash(hash);
+		else if (hash.substr(0,1) == "#") {
+			$('#nav a').each(function(){
+				var href = $(this).attr("href");
+				if (href == hash) {
+					openLearn();
+					var name = hash.substr(1);
+					loadArticleName(name);
+					makeQuestionVisible();
+					window.history.replaceState({name:name}, name, href);
+					return false;
+				}
+			});
 		}
+
+		// allow us to page back and forth between articles "#name"
+		window.onpopstate = function(e) {
+			console.log(e.state);
+			if (e.state) {
+				openLearn();
+				loadArticleName(e.state.name);
+				makeQuestionVisible();
+			}
+			else {
+				closeLearn();
+			}
+		}
+
+		// handle navbar link clicking
+		$('#nav a').on('click', function(e) {
+			var href = $(this).attr("href");
+			if (href.substr(0,1) == "#") {
+				var name = href.substr(1);
+				loadArticleName(name);
+				makeQuestionVisible();
+				window.history.pushState({name:name}, name, href);
+				e.preventDefault();
+			}
+		});
+
+		// periodically make sure the article height is properly set
+		// (slow image loading can cause article height to grow past initial height)
 		window.setInterval(updateLearnHeight, 1000);
+
+		// adjust the position of the navbar whenever scrolling
 		$(window).scroll(updateNavPosition);
 	});
 </script>
-<div id="question-wrapper" onclick="toggleLearn()">
+<div id="question-wrapper" onclick="clickLearn()">
 	<img src="img/brain.png">Want to learn <em>how</em> we made it?
 </div>
 <div id="learn-wrapper">
-	<div id="writer-stamp">
-	</div>
-	<div id="content">
+	<div id="initial-content">
 		<div id="intro">
 		here's how we did it!<br/><img src="img/learn_arrow.png"/>
 		</div>
+	</div>
+	<div id="content">
 	</div>
 	<div id="nav-wrapper">
 		<div id="nav">
 			<h2>Welcome</h2>
 			<ul>
-				<a href="#preface"><li id='nav-preface' onclick="loadArticle('preface')">Preface</li></a>
-				<a href="#intro"><li id='nav-intro' onclick="loadArticle('intro')">Intro</li></a>
-				<a href="#quick-look"><li id='nav-quick-look' onclick="loadArticle('quick-look')">Quick Look</li></a>
+				<a href="#preface"><li id='nav-preface'>Preface</li></a>
+				<a href="#intro"><li id='nav-intro'>Intro</li></a>
+				<a href="#quick-look"><li id='nav-quick-look'>Quick Look</li></a>
 			</ul>
 			<h2>Design</h2>
 			<ul>
-				<a href="#flow"><li id='nav-flow' onclick="loadArticle('flow')">Flow</li></a>
-				<a href="#gameplay"><li id='nav-gameplay' onclick="loadArticle('gameplay')">Gameplay</li></a>
-				<a href="#tutorial"><li id='nav-tutorial' onclick="loadArticle('tutorial')">Tutorial</li></a>
-				<a href="#surprise"><li id='nav-surprise' onclick="loadArticle('surprise')">Surprise</li></a>
+				<a href="#flow"><li id='nav-flow'>Flow</li></a>
+				<a href="#gameplay"><li id='nav-gameplay'>Gameplay</li></a>
+				<a href="#tutorial"><li id='nav-tutorial'>Tutorial</li></a>
+				<a href="#surprise"><li id='nav-surprise'>Surprise</li></a>
 			</ul>
 			<h2>Tech</h2>
 			<ul>
-				<a href="#drawing"><li id='nav-drawing' onclick="loadArticle('drawing')">Drawing</li></a>
-				<a href="#paths"><li id='nav-paths' onclick="loadArticle('paths')">Paths</li></a>
-				<a href="#textures"><li id='nav-textures' onclick="loadArticle('textures')">Textures</li></a>
-				<a href="#env"><li id='nav-env' onclick="loadArticle('env')">Environments</li></a>
-				<a href="#layouts"><li id='nav-layouts' onclick="loadArticle('layouts')">Layouts</li></a>
-				<a href="#aiming"><li id='nav-aiming' onclick="loadArticle('aiming')">Aiming</li></a>
+				<a href="#drawing"><li id='nav-drawing'>Drawing</li></a>
+				<a href="#paths"><li id='nav-paths'>Paths</li></a>
+				<a href="#textures"><li id='nav-textures'>Textures</li></a>
+				<a href="#env"><li id='nav-env'>Environments</li></a>
+				<a href="#layouts"><li id='nav-layouts'>Layouts</li></a>
+				<a href="#aiming"><li id='nav-aiming'>Aiming</li></a>
 			</ul>
 			<h2>Misc</h2>
 			<ul>
-				<a href="#architecture"><li id='nav-architecture' onclick="loadArticle('architecture')">Architecture</li></a>
-				<a href="#files"><li id='nav-files' onclick="loadArticle('files')">Files</li></a>
-				<a href="#devops"><li id='nav-devops' onclick="loadArticle('devops')">DevOps</li></a>
-				<a href="#source-code"><li id='nav-source-code' onclick="loadArticle('source-code')">Source Code</li></a>
+				<a href="#architecture"><li id='nav-architecture'>Architecture</li></a>
+				<a href="#files"><li id='nav-files'>Files</li></a>
+				<a href="#devops"><li id='nav-devops'>DevOps</li></a>
+				<a href="#source-code"><li id='nav-source-code'>Source Code</li></a>
 			</ul>
 		</div>
 		<div id="octopus">

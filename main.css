@@ -231,6 +231,7 @@ padding-bottom: 11.84%;
 	top: 0;
 	left: 0;
 	margin-top: 20px;
+	margin-right: 40px;
 }
 
 #learn-wrapper #nav {
@@ -351,12 +352,6 @@ padding-bottom: 11.84%;
 #learn-wrapper #content a {
 	text-decoration: none;
 	color: #AA4B69;
-}
-
-@media (max-width: 1028px) {
-	#learn-wrapper #content {
-		margin-left: 200px;
-	}
 }
 
 #learn-wrapper #intro {

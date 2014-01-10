@@ -204,6 +204,7 @@
 		// set jquery element variables
 		$navBar = $('#learn-wrapper #nav-wrapper');
 		$learnWrapper = $('#learn-wrapper');
+		var $content = $('#content');
 
 		// populate initial article body
 		loadInitialContent();
@@ -257,6 +258,23 @@
 
 		// adjust the position of the navbar whenever scrolling
 		$(window).scroll(updateNavPosition);
+
+		// center the article content, but don't intersect the navbar
+		$(window).resize(function() {
+			var contentWidth = $content.innerWidth();
+			var navWidth = $navBar.outerWidth(true);
+			var fullWidth = $learnWrapper.innerWidth();
+			if ((fullWidth - contentWidth)/2 < navWidth) {
+				$content.css({"margin-left": navWidth+"px"});
+			}
+			else {
+				$content.css({"margin-left": "auto"});
+			}
+		});
+
+		// trigger the resize event to initialize article position
+		$(window).resize();
+
 	});
 </script>
 <div id="question-wrapper" onclick="clickLearn()">

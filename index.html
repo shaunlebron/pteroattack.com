@@ -117,12 +117,33 @@
 			var maxY = Math.max(learnTop, learnTop+learnHeight - navHeight);
 
 			var y = scrollPos;
-			y = Math.max(minY, y);
-			y = Math.min(maxY, y);
 
-			y -= learnTop;
+			if (y > maxY) {
+				$navBar.css({
+					"position": "absolute",
+					"top": "auto",
+					"bottom": 0,
+					"left": 0,
+				});
+			}
+			else if (y < minY) {
+				$navBar.css({
+					"position": "absolute",
+					"top": 0,
+					"bottom": "auto",
+					"left": 0,
+				});
+			}
+			else {
+				$navBar.css({
+					"position": "fixed",
+					"top": 0,
+					"bottom": "auto",
+					"left": 0,
+				});
+			}
 
-			$navBar.css({'top': y+"px"});
+
 		}
 	}
 	function makeQuestionVisible() {

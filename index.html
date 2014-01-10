@@ -229,13 +229,12 @@
 
 		// allow us to page back and forth between articles "#name"
 		window.onpopstate = function(e) {
-			console.log(e.state);
 			if (e.state) {
 				openLearn();
 				loadArticleName(e.state.name);
 				makeQuestionVisible();
 			}
-			else {
+			else if (!window.location.hash) {
 				closeLearn();
 			}
 		}

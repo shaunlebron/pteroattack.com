@@ -128,7 +128,7 @@ smart-merging strategy of those contiguous regions, then packs all the regions o
 all the images into a single image.  It also creates a metadata file noting the
 locations of each region and their original locations in their source images.
 
-[The Mosaic tool is available here on GitHub.](https://github.com/shaunew/HygoonMosaic)
+[The Mosaic tool is available here on GitHub.](https://github.com/shaunlebron/HygoonMosaic)
 
 ### Fonts
 
@@ -164,7 +164,7 @@ to me in SWF format.
 I was able to upload the SWF to [Google Swiffy's web
 interface](https://www.google.com/doubleclick/studio/swiffy/) to produce an
 HTML5 page.  To extract the the SVG frames from this page, I wrote a script
-that you can find here: <https://gist.github.com/shaunew/7904683>
+that you can find here: <https://gist.github.com/shaunlebron/7904683>
 
 I fear that this pipeline will be broken in the future since it relies on
 Google Swiffy which may be shut down.  There is no source code available for
@@ -198,7 +198,7 @@ with canvas paths.  I used a [repurposed version of this
 tool](http://www.omnisoftsystems.com/?returnUrl=/iTrax/Home/svg2Canvas/0) for
 easing the conversion process.  I also stripped out the essential parts of it
 to use as an offline backup for our pipeline:
-<https://github.com/shaunew/Svg2Canvas>
+<https://github.com/shaunlebron/Svg2Canvas>
 
 ![texture-canvaspath](img/texture-canvaspath.png)
 
